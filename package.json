@@ -1,5 +1,5 @@
 {
-  "name": "speech-sample",
+  "name": "999-triage",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -51,7 +51,10 @@
     "nodemon": "^3.0.1",
     "npm-run-all": "^4.1.5",
     "pino-colada": "^2.2.2",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "eslint": "^8.57.1",
+    "prettier": "^3.3.3",
+    "prettier-eslint": "^16.3.0"
   },
   "overrides": {
     "css-select": "^5.1.0"
