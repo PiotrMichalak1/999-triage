@@ -18,16 +18,16 @@ export default function App() {
       tokenObj.authToken,
       tokenObj.region,
     );
-    speechConfig.speechRecognitionLanguage = "en-US";
-
+    //speechConfig.speechRecognitionLanguage = "";
+    const autoDetectSourceLanguageConfig = speechsdk.AutoDetectSourceLanguageConfig.fromLanguages(["en-US", "ru-RU", "pl-PL", "ja-JP"]);
     const audioConfig = speechsdk.AudioConfig.fromDefaultMicrophoneInput();
-    const recognizer = new speechsdk.SpeechRecognizer(
+    const recognizer = speechsdk.SpeechRecognizer.FromConfig(
       speechConfig,
+      autoDetectSourceLanguageConfig,
       audioConfig,
     );
 
     setDisplayText("speak into your microphone...");
-
     recognizer.recognizeOnceAsync((result) => {
       if (result.reason === ResultReason.RecognizedSpeech) {
         setDisplayText(`RECOGNIZED: Text=${result.text}`);
