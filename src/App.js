@@ -16,12 +16,12 @@ export default function App() {
   const [player, updatePlayer] = useState({ p: undefined, muted: false });
 
   async function sttFromMic() {
-    const tokenObj = await getTokenOrRefresh();
-    const speechConfig = speechsdk.SpeechConfig.fromAuthorizationToken(
-      tokenObj.authToken,
-      tokenObj.region,
+    //const tokenObj = await getTokenOrRefresh();
+    const speechConfig = speechsdk.SpeechConfig.fromSubscription(
+      process.env.REACT_APP_TRIAGE_SPEECH_KEY,
+      process.env.REACT_APP_TRIAGE_SPEECH_REAGION,
     );
-    //speechConfig.speechRecognitionLanguage = "";
+
     const autoDetectSourceLanguageConfig =
       speechsdk.AutoDetectSourceLanguageConfig.fromLanguages([
         "en-US",
@@ -49,13 +49,11 @@ export default function App() {
   }
 
   async function sttFromMicWithTranslationToEnglish() {
-    const tokenObj = await getTokenOrRefresh();
-    const speechTranslationConfig =
-      speechsdk.SpeechTranslationConfig.fromAuthorizationToken(
-        tokenObj.authToken,
-        tokenObj.region,
-      );
-    speechTranslationConfig.speechRecognitionLanguage = "en-GB";
+    const speechTranslationConfig = speechsdk.SpeechTranslationConfig.fromSubscription(
+      process.env.REACT_APP_TRIAGE_SPEECH_KEY,
+      process.env.REACT_APP_TRIAGE_SPEECH_REGION,
+    );
+    speechTranslationConfig.speechRecognitionLanguage = "en-GB"; //need to specify for proper TranslationRecognizer initialization
     speechTranslationConfig.addTargetLanguage("en");
     const autoDetectSourceLanguageConfig =
       speechsdk.AutoDetectSourceLanguageConfig.fromLanguages([
