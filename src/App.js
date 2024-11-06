@@ -89,7 +89,7 @@ export default function App() {
           content: [
             {
               type: "text",
-              text: "You're an assistant designed to analyze emergency. Categorise in 3 categories High, Medium and Low based on the situation. Explain why this category was chosen.",
+              text: "You're an assistant designed to analyze emergency. Categorise in 3 categories High, Medium and Low based on the situation. Explain why this category was chosen. Be concise with your explanation",
             },
           ],
         },
@@ -132,25 +132,28 @@ export default function App() {
 
   return (
     <Container className="app-container vh-100">
-      <h1 className="display-4 mb-3">999-triage</h1>
+  <div className="text-center mb-4">
+    <i
+      className="fas fa-microphone fa-lg mr-2"
+      onClick={() => sttFromMicWithTranslationToEnglish()}
+    ></i>
+    Translate speech to English text from your mic.
+  </div>
 
-      <div className="row main-container h-50">
-        <div className="col-6">
-          <i
-            className="fas fa-microphone fa-lg mr-2"
-            onClick={() => sttFromMicWithTranslationToEnglish()}
-          ></i>
-          Translate speech to English text from your mic.
-        </div>
-        <div className="col-6">
-          <div className="output-display rounded h-50">
-            <code>{translationText}</code>
-          </div>
-          <div className="mt-2 output-display rounded h-50">
-            <code>{assessmentText}</code>
-          </div>
-        </div>
+  <div className="row main-container">
+    <div className="col-6">
+      <div className="output-display rounded h-101">
+        <h5>Translated Text</h5>
+        <code>{translationText}</code>
       </div>
-    </Container>
+    </div>
+    <div className="col-6">
+      <div className="output-display rounded h-101">
+        <h5>Assessment</h5>
+        <code>{assessmentText}</code>
+      </div>
+    </div>
+  </div>
+</Container>
   );
 }
